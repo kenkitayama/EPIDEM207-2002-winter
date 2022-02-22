@@ -1,10 +1,4 @@
 
-%let workdir = C:\Users\Ken Kitayama\Dropbox\Dropbox\UCLA FSPH\2021-2022\Winter 21-22\EPI 209 - Reproducibility in Epidemiologic Research\Assignments\Assignment 2;
-libname epi207 "&workdir";
-
-libname A1 "C:\Users\Ken Kitayama\Dropbox\Dropbox\UCLA FSPH\2021-2022\Winter 21-22\EPI 209 - Reproducibility in Epidemiologic Research\Assignments\Assignment 2";
-
-
 
 /* Load data */
 proc import datafile="C:\Users\Ken Kitayama\Dropbox\Dropbox\UCLA FSPH\2021-2022\Winter 21-22\EPI 209 - Reproducibility in Epidemiologic Research\Assignments\Assignment 2\Data\pone.0248856.s001" dbms=xlsx out=data replace;
@@ -67,7 +61,7 @@ RUN;
 PROC CONTENTS data=outdata2 VARNUM;
 RUN;
 
-DATA A1.outdata_label;
+DATA outdata_label;
 SET outdata2(rename=(BMIgr2=BMIgr));
 
 Label	ID 					= "ID"
