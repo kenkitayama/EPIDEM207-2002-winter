@@ -2,6 +2,10 @@
 %let workdir = C:\Users\Ken Kitayama\Dropbox\Dropbox\UCLA FSPH\2021-2022\Winter 21-22\EPI 209 - Reproducibility in Epidemiologic Research\Assignments\Assignment 2;
 libname epi207 "&workdir";
 
+libname A1 "C:\Users\Ken Kitayama\Dropbox\Dropbox\UCLA FSPH\2021-2022\Winter 21-22\EPI 209 - Reproducibility in Epidemiologic Research\Assignments\Assignment 2";
+
+
+
 /* Load data */
 proc import datafile="C:\Users\Ken Kitayama\Dropbox\Dropbox\UCLA FSPH\2021-2022\Winter 21-22\EPI 209 - Reproducibility in Epidemiologic Research\Assignments\Assignment 2\Data\pone.0248856.s001" dbms=xlsx out=data replace;
 run;
@@ -63,7 +67,7 @@ RUN;
 PROC CONTENTS data=outdata2 VARNUM;
 RUN;
 
-DATA outdata_label;
+DATA A1.outdata_label;
 SET outdata2(rename=(BMIgr2=BMIgr));
 
 Label	ID 					= "ID"
@@ -136,19 +140,6 @@ MODEL HT (EVENT='Yes') = ASM_Wt_ Sex Age shx_smoke_yn shx_alcohol_yn;
 RUN;
 TITLE;
 
-PROC LOGISTIC DATA=outdata_label;
-TITLE "HTN: Model 3";
-MODEL HT (EVENT='Yes') = ASM_Wt_ Sex Age shx_smoke_yn shx_alcohol_yn bexam_bmi bexam_wc; 
-RUN;
-TITLE;
-
-PROC LOGISTIC DATA=outdata_label;
-TITLE "HTN: Model 4";
-MODEL HT (EVENT='Yes') = ASM_Wt_ Sex Age shx_smoke_yn shx_alcohol_yn bexam_bmi bexam_wc DysL_ dm; 
-ods output ParameterEstimates=OutEst
-OddsRatios=OutOR;
-RUN;
-TITLE;
 
 /* Linear regressions (ASM% and MAP) */
 PROC REG DATA=outdata_label
